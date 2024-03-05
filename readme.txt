@@ -13,7 +13,7 @@ Main Game
 5 Reels, 4 Rows.
 14 Winning lines.
 2S: Feature!
-Scatter become wilds. Depending on their height? It might have a multiplier of up to 4x (when on the 1st row). It's also possible to trigger a Wild Strike, which place up to 2 wilds with a multiplier that follow the rules mentioned above. This have no impact on native wilds.
+Scatters become wilds with multiplier.
 
 For the Main game, there are 4 modes to choose from.
 Basic Mode (1x/spin): basic mode description here.
@@ -38,17 +38,17 @@ J:  0.3/0.6/1.2
 ---- ---- ---- ----
 BONUS
 3S: Bonus!
-12 spins with Sticky Wilds!
+8 spins with Sticky Wilds!
 2/3/4 Wilds on the same reel: Each of them get a x2/3/4 multiplier.
 Landing additional Scatters will upgrade the bonus. +2 Spins, plus trigger the Wild Strike.
 
 4S: Premium Bonus!
-Now it's 14 spins!
+Now it's 10 spins!
 Wild Strike at the beginning: 1-3 random blocks are replaced with Wild!
 Landing additional Scatters will upgrade the bonus. +2 Spins, plus trigger the Wild Strike. Also "Both Ways" for the rest of the bonus.
 
 5S: SUPER Bonus!
-Now it's 16 spins!
+Now it's 12 spins!
 Wild Strike at the beginning: 2-7 random blocks are replaced with Wild!
 And...BOTH WAYS! This means:
 A single payline can pay twice: Such as [H1][W][W][H3][H3] counts as H1, 3 OAKs + H3, 4 Oaks
@@ -68,12 +68,14 @@ Bonus Buy
 4S Premium Bonus: The price is 480x.
 5S SUPER Bonus: The price is 1900x.
 ---- ---- ---- ----
-Lucky Draw
+Lucky Draw 
+(I think that's more than enough variants)
 Regular Draw
 60/30/10% Chance of getting 3/4/5 S Bonus
 
 Upside Down Draw
 10/30/60% Chance of getting 3/4/5 S Bonus
+We just flipped the pyramid upside down!
 So that's a 60% chance of getting 5S at a super discounted price.
 But hitting the unlucky 40%? Yo, get screwed!
 
@@ -81,12 +83,14 @@ Discount 5S Draw
 85%: 5S Bonus
 15%: NOTHING
 Try to buy a 5S Bonus at a discount, and willing to take some risks? Take this!
+Even if you hit the 5S Bonus, there's no guarantee you'll end up with a profit.
+But if you missed, well, you get a guaranteed 0, oh, totally dead.
 
 Risky 50/50 Draw
 50%: NOTHING
 30/10/10%: 3/4/5 S Bonus.
 
-Double or Nothing Draw
+Double or Nothing Draw (Might get cancelled)
 70%: 2S Feature
 24%: 3S Bonus
 5%: 4S Premium Bonus
