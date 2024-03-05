@@ -1,0 +1,85 @@
+Math.txt
+---- ---- ---- ----
+Base Spin
+2S
+Number TBD.
+3S
+480,000 in 100,000,000 spins, or 1 in 208.33
+1,035,000 in 100,000,000 extra bet spins, or 1 in 96.62.
+4S
+15,400 in 100,000,000 spins, or 1 in 6,493.51.
+39,300 in 100,000,000 extra bet spins, or 1 in 2,544.53.
+5S
+1,330 in 100,000,000 spins, or 1 in 75,187.97.
+4,380 in 100,000,000 extra bet spins, or 1 in 22,831.05.
+---- ---- ---- ----
+Base Game Math
+It's more complicated than I thought. And there seems to be multiple approaches to it.
+Well, at least it's a paylines* game, not ways* game. So less complicated, I guess? *I don't know much about slots glossary, so I just call it this way.
+Step 1: generate a random board, according to the following rules:
+-No more than 1 Wild per reel.
+-No more than 3 Same symbols per reel.
+Step 2: add scatters.
+There's a predefined chance of landing 1-5 Scatters.
+For reels with wilds, scatter will replace that wild.
+Otherwise, they're placed randomly.
+Step 3: add winnings.
+The program may or may try to randomly add some winnings paylines, by trying the following generate algorithm:
+1. Determine Symbol and OAKs. Use an example of H1, 4 OAKs here.
+2. Randomly select a payline. Only continue if it didn't fail.
+100% Fail, if that payline is already a win.
+100% Fail, if it's blocked by one or more Scatters. In this case, a Scatter in any of the first 4 positions of a payline would cause a fail.
+However in case of exactly 2 scatters, the chance of failure is reduced to 65% if involving 1 scatter, or 85% if involving 2 scatters.
+70%-100% Fail, if placing it would screw up another payline that's already a win. If it's possible to fix this conflict by replacing a single overlapping symbol with wild, there's a 30% success rate. However other rules still apply (No more than 1 scatter/wild per reel)
+3. Put it there.
+
+---- ---- ---- ----
+Cart Spin
+Regular: 10x cost/spin
+2S: worth 0x, freq pretty god damn high. 
+3S: worth 75x, freq 9,351,000 in 100,000,000 spins, or 1 in 10.6940 spins.
+4S: worth 460x, freq 515,500 in 100,000,000 spins, or 1 in 193.9864 spins.
+5S: worth 1,900x, freq 31,350 in 100,000,000 spins, or 1 in 3189.7927 spins.
+Total: 9,897,850 in 100,000,000 spins would hit a bonus, or 1 in 10.1032 spins.
+You might noticed if you do 100M Cart Spins and wager 1B x (getting the exact bonus freq mentioned above), the bonus you got only have a total MSRP of 998.02M x. A little bit of RTP accidently dropped into a black hole and we can't retrive them. Sorry for any inconvience in advance.
+
+Premium: 14x cost/spin
+focus more on 4S/5S bonus.
+2S: still worth 0x, with a even higher freq.
+3S: worth 75x, freq 11,780,000 in 100,000,000 spins, or 1 in 8.4890 spins.
+4S: worth 460x, freq 784,900 in 100,000,000 spins, or 1 in 127.4048 spins.
+5S: worth 1,900x, freq 81,450 in 100,000,000 spins, or 1 in 1227.7471 spins.
+Total: 12,644,850 in 100,000,000 spins would hit a bonus, or 1 in 7.9084 spins.
+Premium one comes with premium quality, so less % of total RTP dropped into the black hole this time. 
+---- ---- ---- ----
+Bonus
+Each bonus comes with a seed*, which determines part of their performance. 
+The odd of getting different seeds, and how powerful they are, are unknown for now. It'll take me some trial and errors, but I will adjust them to make it worth the bonus buy cost.
+Most of the seeds are within the 6 main category, where AAA being the highest and the rarest, and D being the lowest and the most common one.
+AAA > AA > A > B > C > D
+But there's also some special seeds, and will overwrite the round's normal seed.
+Max Seed: 
+When this seed is selected, the game will generate a lot of bonus rounds with AAA seed, until a max win is generated. Then it will deliever that max win round to the player.
+
+1/(big number) 5S Bonus comes with a Max Seed.
+1/(bigger number) 4S Bonus comes with a Max Seed.
+1/(very big number) 3S Bonus comes with a Max Seed.
+Trash Seed: 
+Rarer than the D seed, but as the name implies, it delievers a trash round.
+Mega Trash Seed:
+Even rarer than the one mentioned above, it's like you would hit the top (small number) percentile and get an AAA seed and got the direction wrong, then you got this. If this happens the player is unable to land any sticky wilds, and HF for each spin is much lower. Oh and you also can't land additional scatters to upgrade the bonus.
+
+*I feel like there might be a hidden seed behind some game's bonus rounds. Examples:
+Infectious 5 xWays: AAA seed gets many x2/x3 sticky wilds. D seed only get one guaranteed sticky wild, with no multiplier.
+xWays Hoarder: AAA seed will allow you to literally swimming in xWays and reach the final phase pretty quick. D seed can get 1 xWays at most.
+Tombstone RIP: AAA seed gets more than enough x310/523/999. D seed can't go above x45.
+Misery Mining(Super Bonus): C+ seed have a minimum win of 200x. D seed is 100x. Trash seed is 50x. And Mega Trash seed can go below 50x.
+(But this doesn't apply to all games. Wanted's bonus 2 and 3, Serial and Disturbed is pretty much a bonus consists of some spins that are equivalent to each other. Those what I call "Equivalent Spin Bonus" are easier to do the math, comparing to one that have progressive effects, such as increasing multipliers in a Megaways game, or more and more Sticky Wilds.
+---- ---- ---- ----
+Stats from Simulated Results
+(Will update this part after I finished coding and testing the math part)
+Round type: TYPE
+Sample size: NUMBER
+More info: DATA
+JSON File: FILE_NAME
+Don't ask me why it's not 10B simiulated rounds. I have no access to any super computer or quantum computer, with a single gaming laptop that's the best I can do at this moment.
