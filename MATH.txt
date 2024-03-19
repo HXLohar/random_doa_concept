@@ -1,15 +1,15 @@
 Math.txt
 ---- ---- ---- ----
 Base Spin
-2S
+2S Feature
 Number TBD.
-3S
+3S BONUS
 480,000 in 100,000,000 spins, or 1 in 208.33
 1,035,000 in 100,000,000 extra bet spins, or 1 in 96.62.
-4S
+4S Premium BONUS
 15,400 in 100,000,000 spins, or 1 in 6,493.51.
 39,300 in 100,000,000 extra bet spins, or 1 in 2,544.53.
-5S
+5S SUPER BONUS
 1,330 in 100,000,000 spins, or 1 in 75,187.97.
 4,380 in 100,000,000 extra bet spins, or 1 in 22,831.05.
 ---- ---- ---- ----
