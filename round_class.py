@@ -1,18 +1,31 @@
 import random
 import numpy as np
 
+
 class symbol:
-    def __init__(self, new_symbol="empty"):
+    def __init__(self, new_symbol="empty", new_multi=1, new_is_conv=False):
         self.symbol = new_symbol
-        self.sticky = False
-        self.multiplier = 1
-        self.is_converted = False
+        # self.sticky = False
+        self.multiplier = new_multi
+        self.is_converted = new_is_conv
+
+    def get_string(self):
+        s = self.symbol
+
+        if self.multiplier > 1:
+            s += f" x{self.multiplier}"
+        if self.is_converted:
+            s += "*"
+        return s
+
+
 def get_symbol_list(class_spin, payline_id):
     symbol_list = []
     for i in range(0, 5):
-        index = (payline_id[i]-1)*5 + i
+        index = (payline_id[i] - 1) * 5 + i
         symbol_list.append(class_spin.symbols[index])
     return symbol_list
+
 
 def get_payout(symbol_id, OAKs):
     if OAKs < 3:
@@ -24,6 +37,7 @@ def get_payout(symbol_id, OAKs):
             if parts[0].strip() == symbol_id:
                 values = parts[1].strip().split("/")
                 return float(values[OAKs - 3])
+
 
 def map_symbol_to_value(symbol_string):
     symbol_map = {
@@ -37,9 +51,15 @@ def map_symbol_to_value(symbol_string):
         "L2": 7,
         "L3": 8,
         "L4": 9,
-        "L5": 10
+        "L5": 10,
+        "A": 6,
+        "K": 7,
+        "Q": 8,
+        "J": 9,
+        "10": 10
     }
     return symbol_map.get(symbol_string, None)
+
 
 def calc_payline(symbol_list):
     # param: 5 symbols, in the correct order
@@ -62,14 +82,18 @@ def calc_payline(symbol_list):
         payout *= symbol_list[i].multiplier
     return payout
 
+
 class spin:
     def __init__(self):
         self.symbols = []
-class round:
+
+
+class game_round:
     def __init__(self):
 
         self.round_type = "base"
         self.blocks = []
+
         self.cost_multi = 1.0
         self.spins_left = 0
         self.seed = 0
@@ -93,7 +117,6 @@ class round:
 
         # the odds of getting 0-5 scatters (per 100M spins)
         if self.round_type == "extra_bet":
-
             scatter_odds = [0, 89049320, 9872000, 1035000, 39300, 4380]
         scatter_count = random.choices(scatter_count, weights=scatter_odds, k=1)[0]
 
@@ -117,7 +140,6 @@ class round:
                     symbol_adjustment[map_symbol_to_value(new_symbol)] -= 0.5
                 item.symbol = new_symbol
 
-
         # todo
         # symbol weight might randomly fluctuate. like randomly you might enter a "premium" spin
         # and in that spin, it's much more likely to land premium symbols
@@ -136,11 +158,35 @@ class round:
         # convert it to x2-x4 Wilds, if only 2 S lands
         if scatter_count == 2:
             self.convert_scatters()
+
+    # set it to a predefined board, to test various things.
+    def set_debug_board(self, board_id=1):
+        if board_id == 1:
+            # first row
+            self.blocks[0][0] = symbol("W", 4, True)
+            self.blocks[1][0] = symbol("W")
+            self.blocks[2][0] = symbol("W", 3, True)
+            self.blocks[3][0] = symbol("W", 3)
+            self.blocks[4][0] = symbol("A")
+            # second row
+            self.blocks[0][1] = symbol("H3")
+            self.blocks[1][1] = symbol("K")
+            self.blocks[2][1] = symbol("10")
+            self.blocks[3][1] = symbol("H5")
+            self.blocks[4][1] = symbol("J")
+            # other 2 rows unused
+
     def debug_print(self):
-        # todo
-        # print some strings about the current board
-        # will do this tomorrow (maybe)
-        pass
+
+
+
+        for i in range(4):
+            row = ""
+            for j in range(5):
+                row += self.blocks[j][i].get_string().center(5)
+                if j < 4:
+                    row += " "
+            print(row)
 
     def place_scatter(self, reel_id):
         height = random.randint(0, 3)
@@ -148,6 +194,7 @@ class round:
             if self.blocks[reel_id][i].symbol == "W":
                 height = i
         self.blocks[reel_id][height].symbol = "S"
+
     def convert_scatters(self):
         for i in range(0, 5):
             for j in range(0, 4):
@@ -162,11 +209,13 @@ class round:
         # todo
         # return a list of winning paylines
         pass
+
     def get_occupied_blocks(self):
         # todo
         # occupied: it's not W, and part of an existing payline
         # so replacing it with something else will break that payline
         pass
+
     def get_available_lines(self, OAKs):
         # todo
         # search for non-winning lines that are safe to throw in
@@ -191,24 +240,14 @@ class round:
         if not self.round_type == "extra_bet":
             reel = [0, 1, 2, 3, 4]
             probabilities = [14, 40, 40, 28, 6]
-            result = np.random.choice(reel, scatter_count, p=np.array(probabilities) / sum(probabilities), replace=False)
+            result = np.random.choice(reel, scatter_count, p=np.array(probabilities) / sum(probabilities),
+                                      replace=False)
             result_list = result.tolist()
         else:
             reel = [0, 2, 3, 4]
             probabilities = [12, 46, 26, 4]
-            result = np.random.choice(reel, scatter_count-1, p=np.array(probabilities) / sum(probabilities),
+            result = np.random.choice(reel, scatter_count - 1, p=np.array(probabilities) / sum(probabilities),
                                       replace=False)
             result_list = result.tolist()
             result_list.append(1)
         return result_list
-
-
-
-
-
-
-
-
-
-
-
